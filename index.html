@@ -426,7 +426,9 @@ footer{
         LinkedIn
       </a>
       <a href="https://github.com/KvS-25" target="_blank" rel="noopener">
-        <svg class="icon-fill" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="icon-fill" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
         GitHub
       </a>
     </div>
@@ -439,12 +441,16 @@ footer{
       <h3>lncRNA expression under cold and drought stress in conifers</h3>
       <p class="meta">Umeå University · MSc thesis · <span class="status">in submission</span></p>
       <p>
-        Confirmed long non-coding RNA loci in <em>Pinus sylvestris</em> and
-        <em>Picea abies</em> don't come with clean functional annotation the way
-        protein-coding genes do. My approach assigns each lncRNA a functional
-        proxy — the nearest protein-coding gene within 100 kb — then tests those
-        neighbour gene sets for GO and KEGG pathway enrichment across needle and
-        root tissue, under cold and drought stress.
+        Conifers like Scots pine and Norway spruce dominate boreal forests
+        precisely because they've evolved robust ways of coping with cold and
+        drought — and long non-coding RNAs are increasingly implicated as part
+        of that regulatory toolkit. The trouble is that, unlike protein-coding
+        genes, confirmed lncRNA loci don't come with clean functional
+        annotation. My approach works around that by assigning each lncRNA a
+        functional proxy — the nearest protein-coding gene within 100 kb — and
+        testing those neighbour gene sets for GO and KEGG pathway enrichment
+        across needle and root tissue, under cold and drought stress
+        conditions.
       </p>
       <p class="finding">
         Nearest-neighbour proximity is a functional proxy, not evidence of
@@ -453,10 +459,12 @@ footer{
       </p>
       <p>
         The pipeline runs end-to-end on a SLURM HPC cluster: alignment with
-        minimap2, interval work in bedtools, enrichment in R/Bioconductor
-        (topGO), with a coordinate liftover step for the spruce genome. It
-        produces the comparative visualisations — UpSet plots, heatmaps, bubble
-        plots — used throughout the thesis.
+        minimap2, interval work in bedtools, and enrichment analysis in
+        R/Bioconductor (topGO), with a coordinate liftover step to extend the
+        method from pine to the spruce genome for cross-species comparison. It
+        produces the comparative visualisations — UpSet plots, heatmaps,
+        bubble plots — used throughout the thesis to compare stress response
+        patterns across tissues and species.
       </p>
       <p class="tool-list"><span>minimap2</span> · <span>bedtools</span> · <span>R/Bioconductor</span> · <span>topGO</span> · <span>SLURM</span> · <span>Micromamba</span></p>
       <a class="repo-link" href="https://github.com/KvS-25/comparative-lncRNA-pipeline" target="_blank" rel="noopener">github.com/KvS-25/comparative-lncRNA-pipeline ↗</a>
@@ -464,19 +472,27 @@ footer{
 
     <div class="project">
       <h3>Combined CYP3A4/CYP3A5/ABCB1 polymorphisms in tacrolimus dosing</h3>
-      <p class="meta">MAHE Dubai · 30 ECTS thesis, course 5MO134 · <span class="status">extraction phase</span></p>
+      <p class="meta">MAHE Dubai · 30 ECTS thesis, course 5MO134 · <span class="status">systematic review underway</span></p>
       <p>
-        A systematic review and meta-analysis asking a narrower question than
-        most of the existing literature: do combined CYP3A4, CYP3A5, and ABCB1
-        genotypes predict tacrolimus pharmacokinetics better than single-gene
-        analyses alone, across kidney, liver, heart, and lung transplant
+        Tacrolimus has a notoriously narrow therapeutic window, and clinicians
+        already know that CYP3A4, CYP3A5, and ABCB1 genotypes each shift how
+        patients metabolise it. What's less settled is whether looking at these
+        genes <em>together</em> actually improves dose prediction over the
+        single-gene analyses most of the literature still relies on. This
+        systematic review and meta-analysis is built to answer that directly,
+        pooling pharmacokinetic outcomes — trough concentration and
+        dose-adjusted ratios — across kidney, liver, heart, and lung transplant
         populations.
       </p>
       <p>
-        128 studies extracted so far from a post-deduplication pool of 1,300
-        records (2,732 identified across PubMed, Scopus, and Embase). Title and
-        abstract screening is next, followed by a random-effects meta-analysis
-        with subgroup analysis by organ type and genotype combination.
+        The project follows PRISMA methodology from the ground up: literature
+        search across PubMed, Scopus, and Embase, deduplication and
+        screening in Zotero, structured full-text data extraction, and a
+        prior-meta-analysis and narrative-review mapping exercise to place
+        the work against what's already been published. Full-text extraction
+        is well underway, with title/abstract screening and the
+        random-effects meta-analysis — including subgroup analysis by organ
+        type and genotype combination — still ahead.
       </p>
       <p class="tool-list"><span>PRISMA</span> · <span>Zotero</span> · <span>R (meta-analysis)</span></p>
     </div>
