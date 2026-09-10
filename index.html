@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karanveer Singh — Computational Biology</title>
+<meta name="description" content="Karanveer Singh — MSc researcher in Molecular Biology at Umeå University. lncRNA stress response in conifers, pharmacogenomics, computational drug discovery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg: #F3F5EE;
+  --bg-panel: #EAEEE1;
+  --ink: #1B1D17;
+  --ink-soft: #4B4F42;
+  --moss: #435840;
+  --moss-deep: #33452F;
+  --bark: #8C5A3C;
+  --line: #D3DAC5;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--moss); color:var(--bg);}
+
+a{color:var(--moss-deep); text-decoration-color: var(--line); text-underline-offset:3px;}
+a:hover{text-decoration-color: var(--moss-deep);}
+
+a:focus-visible, button:focus-visible{
+  outline:2px solid var(--bark);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.wrap{
+  max-width:700px;
+  margin:0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+
+header.hero{
+  padding: 88px 0 56px;
+  border-bottom:1px solid var(--line);
+}
+
+.eyebrow-name{
+  font-family:var(--mono);
+  font-size:14px;
+  color:var(--moss-deep);
+  letter-spacing:0.02em;
+  margin:0 0 18px;
+}
+
+.hero h1{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(28px, 4.4vw, 40px);
+  line-height:1.28;
+  margin:0 0 22px;
+  max-width:15ch;
+  color:var(--ink);
+}
+
+.hero .location{
+  font-size:15px;
+  color:var(--ink-soft);
+  margin:0 0 28px;
+}
+
+.hero p.summary{
+  max-width:66ch;
+  color:var(--ink-soft);
+  font-size:16.5px;
+}
+
+.hero p.summary strong{
+  color:var(--ink);
+  font-weight:600;
+}
+
+.hero-links{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:28px;
+  font-size:15px;
+}
+
+.hero-links a{
+  font-weight:500;
+}
+
+/* ---------- Diagram ---------- */
+
+.diagram-block{
+  padding: 48px 0 8px;
+}
+
+.diagram-caption{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--ink-soft);
+  margin-top:14px;
+  max-width:52ch;
+}
+
+/* ---------- Sections ---------- */
+
+section{
+  padding: 56px 0;
+  border-bottom:1px solid var(--line);
+}
+
+section:last-of-type{
+  border-bottom:none;
+}
+
+.section-label{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--bark);
+  margin: 0 0 32px;
+}
+
+.section-label::before{
+  content:"— ";
+}
+
+/* ---------- Research entries ---------- */
+
+.project{
+  margin-bottom:48px;
+}
+.project:last-child{
+  margin-bottom:0;
+}
+
+.project h3{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:22px;
+  margin:0 0 6px;
+  color:var(--ink);
+}
+
+.project .meta{
+  font-size:14px;
+  color:var(--ink-soft);
+  margin:0 0 16px;
+}
+
+.project .meta .status{
+  color:var(--moss-deep);
+  font-weight:500;
+}
+
+.project p{
+  max-width:64ch;
+  margin: 0 0 14px;
+  color:var(--ink-soft);
+}
+
+.project p:last-of-type{
+  margin-bottom:0;
+}
+
+.project .finding{
+  border-left:2px solid var(--moss);
+  padding-left:18px;
+  margin: 20px 0;
+  font-family:var(--serif);
+  font-style:italic;
+  color:var(--ink);
+  font-size:16.5px;
+  max-width:56ch;
+}
+
+.tool-list{
+  font-family:var(--mono);
+  font-size:13.5px;
+  color:var(--ink-soft);
+  margin-top:16px;
+}
+
+.tool-list span{
+  color:var(--moss-deep);
+}
+
+.repo-link{
+  display:inline-block;
+  margin-top:16px;
+  font-family:var(--mono);
+  font-size:14px;
+}
+
+/* ---------- Publications ---------- */
+
+.pub{
+  max-width:64ch;
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:1px dashed var(--line);
+}
+.pub:last-child{
+  border-bottom:none;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+.pub .pub-title{
+  font-style:italic;
+  color:var(--ink);
+}
+
+.pub .pub-venue{
+  font-size:14px;
+  color:var(--ink-soft);
+  margin-top:6px;
+}
+
+/* ---------- Background / timeline ---------- */
+
+.timeline-item{
+  display:grid;
+  grid-template-columns: 130px 1fr;
+  gap:20px;
+  margin-bottom:26px;
+  max-width:66ch;
+}
+
+.timeline-item:last-child{
+  margin-bottom:0;
+}
+
+.timeline-date{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--ink-soft);
+  padding-top:2px;
+}
+
+.timeline-content h4{
+  margin:0 0 4px;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:15.5px;
+  color:var(--ink);
+}
+
+.timeline-content p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:15px;
+}
+
+/* ---------- Contact ---------- */
+
+.contact-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  font-size:16px;
+}
+
+.contact-list li{
+  margin-bottom:12px;
+}
+
+.contact-list .label{
+  display:inline-block;
+  width:90px;
+  color:var(--ink-soft);
+  font-size:14px;
+}
+
+/* ---------- Footer ---------- */
+
+footer{
+  padding: 32px 0 60px;
+  font-size:13px;
+  color:var(--ink-soft);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px){
+  header.hero{padding:64px 0 40px;}
+  section{padding:44px 0;}
+  .timeline-item{grid-template-columns: 100px 1fr; gap:14px;}
+  .diagram-block svg{width:100%; height:auto;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow-name">Karanveer Singh</p>
+    <h1>Computational approaches to stress, disease, and drug response</h1>
+    <p class="location">Dubai, UAE · MSc Molecular Biology, Umeå University</p>
+    <p class="summary">
+      I'm an MSc student in Molecular Biology at Umeå University, working on
+      <strong>long non-coding RNA expression and stress response in conifers</strong> —
+      building HPC bioinformatics pipelines on a SLURM cluster, from raw alignment
+      through to GO/KEGG enrichment. Alongside that, I'm running a systematic
+      review and meta-analysis on tacrolimus pharmacogenomics in transplant
+      patients, and my undergraduate research in computational drug discovery
+      led to a peer-reviewed publication in 2022. I'm interested in bioinformatics,
+      plant genomics, and computational biology roles — in academia or industry.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:karan.ben25@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/karanveersingh25/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/KvS-25" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <div class="diagram-block">
+    <!-- Simple SVG illustrating the actual 2x2 experimental design of the lncRNA thesis -->
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle diagramDesc">
+      <title id="diagramTitle">Experimental design diagram</title>
+      <desc id="diagramDesc">A 2 by 2 grid showing tissue type (needle, root) crossed with stress condition (cold, drought), representing the four comparison groups in the lncRNA thesis.</desc>
+
+      <!-- axis labels -->
+      <text x="20" y="30" font-family="IBM Plex Mono" font-size="12" fill="#4B4F42">tissue</text>
+      <text x="20" y="185" font-family="IBM Plex Mono" font-size="12" fill="#4B4F42">condition</text>
+
+      <!-- column headers -->
+      <text x="230" y="30" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="middle">needle</text>
+      <text x="440" y="30" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="middle">root</text>
+
+      <!-- row headers -->
+      <text x="80" y="90" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="end">cold</text>
+      <text x="80" y="165" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="end">drought</text>
+
+      <!-- grid cells -->
+      <rect x="120" y="55" width="220" height="65" fill="#EAEEE1" stroke="#D3DAC5"/>
+      <rect x="360" y="55" width="220" height="65" fill="#EAEEE1" stroke="#D3DAC5"/>
+      <rect x="120" y="130" width="220" height="65" fill="#DCE3D3" stroke="#D3DAC5"/>
+      <rect x="360" y="130" width="220" height="65" fill="#DCE3D3" stroke="#D3DAC5"/>
+
+      <text x="230" y="92" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">needle × cold</text>
+      <text x="440" y="92" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">root × cold</text>
+      <text x="230" y="167" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">needle × drought</text>
+      <text x="440" y="167" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">root × drought</text>
+    </svg>
+    <p class="diagram-caption">The four tissue × stress comparison groups underlying the lncRNA thesis — extended across Scots pine and Norway spruce.</p>
+  </div>
+
+  <section id="research">
+    <p class="section-label">Research</p>
+
+    <div class="project">
+      <h3>lncRNA expression under cold and drought stress in conifers</h3>
+      <p class="meta">Umeå University · MSc thesis · <span class="status">in submission</span></p>
+      <p>
+        Confirmed long non-coding RNA loci in <em>Pinus sylvestris</em> and
+        <em>Picea abies</em> don't come with clean functional annotation the way
+        protein-coding genes do. My approach assigns each lncRNA a functional
+        proxy — the nearest protein-coding gene within 100 kb — then tests those
+        neighbour gene sets for GO and KEGG pathway enrichment across needle and
+        root tissue, under cold and drought stress.
+      </p>
+      <p class="finding">
+        Nearest-neighbour proximity is a functional proxy, not evidence of
+        regulatory function — a distinction the thesis is explicit about
+        throughout.
+      </p>
+      <p>
+        The pipeline runs end-to-end on a SLURM HPC cluster: alignment with
+        minimap2, interval work in bedtools, enrichment in R/Bioconductor
+        (topGO), with a coordinate liftover step for the spruce genome. It
+        produces the comparative visualisations — UpSet plots, heatmaps, bubble
+        plots — used throughout the thesis.
+      </p>
+      <p class="tool-list"><span>minimap2</span> · <span>bedtools</span> · <span>R/Bioconductor</span> · <span>topGO</span> · <span>SLURM</span> · <span>Micromamba</span></p>
+      <a class="repo-link" href="https://github.com/KvS-25/comparative-lncRNA-pipeline" target="_blank" rel="noopener">→ github.com/KvS-25/comparative-lncRNA-pipeline</a>
+    </div>
+
+    <div class="project">
+      <h3>Combined CYP3A4/CYP3A5/ABCB1 polymorphisms in tacrolimus dosing</h3>
+      <p class="meta">MAHE Dubai · 30 ECTS thesis, course 5MO134 · <span class="status">extraction phase</span></p>
+      <p>
+        A systematic review and meta-analysis asking a narrower question than
+        most of the existing literature: do combined CYP3A4, CYP3A5, and ABCB1
+        genotypes predict tacrolimus pharmacokinetics better than single-gene
+        analyses alone, across kidney, liver, heart, and lung transplant
+        populations.
+      </p>
+      <p>
+        128 studies extracted so far from a post-deduplication pool of 1,300
+        records (2,732 identified across PubMed, Scopus, and Embase). Title and
+        abstract screening is next, followed by a random-effects meta-analysis
+        with subgroup analysis by organ type and genotype combination.
+      </p>
+      <p class="tool-list"><span>PRISMA</span> · <span>Zotero</span> · <span>R (meta-analysis)</span></p>
+    </div>
+  </section>
+
+  <section id="publications">
+    <p class="section-label">Publications</p>
+    <div class="pub">
+      <div class="pub-title">Identification of Potential Inhibitors Against SARS-CoV-2 3CLpro, PLpro, and RdRP Proteins: An In-Silico Approach</div>
+      <div class="pub-venue">Advances in Computational Modeling and Simulation, 2022. Molecular docking and molecular dynamics screening of FDA-approved compounds against three SARS-CoV-2 protein targets, undertaken as undergraduate research at BITS Pilani Dubai.</div>
+    </div>
+  </section>
+
+  <section id="background">
+    <p class="section-label">Background</p>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2021 – 2026</div>
+      <div class="timeline-content">
+        <h4>MSc, Molecular Biology — Umeå University</h4>
+        <p>Thesis on lncRNA stress response in conifers. Returned to the programme in 2026 after a period of personal leave.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2017 – 2021</div>
+      <div class="timeline-content">
+        <h4>B.Tech, Biotechnology — BITS Pilani, Dubai</h4>
+        <p>Undergraduate research in computational drug discovery (SARS-CoV-2 target screening) and plant antioxidant extraction from Salicornia. Also worked as an audio/video technician for the campus Event Management Committee.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jun – Aug 2019</div>
+      <div class="timeline-content">
+        <h4>Summer Engineering Intern — GenoPhe Biotech, Bengaluru</h4>
+        <p>Early lab and engineering exposure during undergraduate study.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">Jun – Aug 2021</div>
+      <div class="timeline-content">
+        <h4>Freelance Live Sound Engineer — Headlines Bistro and Café, Dubai</h4>
+        <p>Live sound work alongside academic study.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <ul class="contact-list">
+      <li><span class="label">Email</span><a href="mailto:karan.ben25@gmail.com">karan.ben25@gmail.com</a></li>
+      <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/karanveersingh25/" target="_blank" rel="noopener">linkedin.com/in/karanveersingh25</a></li>
+      <li><span class="label">GitHub</span><a href="https://github.com/KvS-25" target="_blank" rel="noopener">github.com/KvS-25</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    Dubai, United Arab Emirates
+  </footer>
+
+</div>
+
+</body>
+</html>
