@@ -108,25 +108,15 @@ header.hero{
   font-weight:500;
 }
 
-/* ---------- Diagram ---------- */
-
-.diagram-block{
-  padding: 48px 0 8px;
-}
-
-.diagram-caption{
-  font-family:var(--mono);
-  font-size:13px;
-  color:var(--ink-soft);
-  margin-top:14px;
-  max-width:52ch;
-}
-
 /* ---------- Sections ---------- */
 
 section{
   padding: 56px 0;
   border-bottom:1px solid var(--line);
+}
+
+section:first-of-type{
+  padding-top: 56px;
 }
 
 section:last-of-type{
@@ -305,7 +295,6 @@ footer{
   header.hero{padding:64px 0 40px;}
   section{padding:44px 0;}
   .timeline-item{grid-template-columns: 100px 1fr; gap:14px;}
-  .diagram-block svg{width:100%; height:auto;}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -338,38 +327,6 @@ footer{
       <a href="https://github.com/KvS-25" target="_blank" rel="noopener">GitHub</a>
     </div>
   </header>
-
-  <div class="diagram-block">
-    <!-- Simple SVG illustrating the actual 2x2 experimental design of the lncRNA thesis -->
-    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="diagramTitle diagramDesc">
-      <title id="diagramTitle">Experimental design diagram</title>
-      <desc id="diagramDesc">A 2 by 2 grid showing tissue type (needle, root) crossed with stress condition (cold, drought), representing the four comparison groups in the lncRNA thesis.</desc>
-
-      <!-- axis labels -->
-      <text x="20" y="30" font-family="IBM Plex Mono" font-size="12" fill="#4B4F42">tissue</text>
-      <text x="20" y="185" font-family="IBM Plex Mono" font-size="12" fill="#4B4F42">condition</text>
-
-      <!-- column headers -->
-      <text x="230" y="30" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="middle">needle</text>
-      <text x="440" y="30" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="middle">root</text>
-
-      <!-- row headers -->
-      <text x="80" y="90" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="end">cold</text>
-      <text x="80" y="165" font-family="IBM Plex Sans" font-weight="600" font-size="14" fill="#1B1D17" text-anchor="end">drought</text>
-
-      <!-- grid cells -->
-      <rect x="120" y="55" width="220" height="65" fill="#EAEEE1" stroke="#D3DAC5"/>
-      <rect x="360" y="55" width="220" height="65" fill="#EAEEE1" stroke="#D3DAC5"/>
-      <rect x="120" y="130" width="220" height="65" fill="#DCE3D3" stroke="#D3DAC5"/>
-      <rect x="360" y="130" width="220" height="65" fill="#DCE3D3" stroke="#D3DAC5"/>
-
-      <text x="230" y="92" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">needle × cold</text>
-      <text x="440" y="92" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">root × cold</text>
-      <text x="230" y="167" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">needle × drought</text>
-      <text x="440" y="167" font-family="IBM Plex Mono" font-size="12" fill="#33452F" text-anchor="middle">root × drought</text>
-    </svg>
-    <p class="diagram-caption">The four tissue × stress comparison groups underlying the lncRNA thesis — extended across Scots pine and Norway spruce.</p>
-  </div>
 
   <section id="research">
     <p class="section-label">Research</p>
