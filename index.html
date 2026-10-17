@@ -135,7 +135,7 @@ a:focus-visible{
   .hero-main{
     grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
     gap:56px;
-    align-items:end;
+    align-items:start;
   }
 }
 
@@ -146,7 +146,7 @@ a:focus-visible{
   line-height:1.04;
   letter-spacing:-0.03em;
   margin:0;
-  max-width:16ch;
+  max-width:14ch;
   text-wrap:balance;
 }
 
@@ -535,11 +535,11 @@ footer{
     </div>
 
     <div class="hero-main" id="top">
-      <h1>Computational approaches to stress, disease, and drug response</h1>
+      <h1>I'm Karanveer, a computational biologist.</h1>
       <div class="hero-side">
       <p class="summary">
-        I'm an MSc student in Molecular Biology at Umeå University, based in Dubai.
-        My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
+        I'm an MSc student in Molecular Biology at Umeå University, based in Dubai,
+        working on stress, disease and drug response. My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
         in conifers</strong>, using a Snakemake pipeline on a SLURM cluster, from alignment
         through to GO and KEGG enrichment. I'm also finishing a meta-analysis of tacrolimus
         pharmacogenomics in transplant patients. I'm looking for bioinformatics, plant genomics and
@@ -594,49 +594,54 @@ footer{
         <div class="section-body">
 
           <article class="project">
-            <h3>Tissue-specific and stress-responsive lncRNAs in Scots pine and Norway spruce</h3>
+            <h3>lncRNA expression patterns in <em>Pinus sylvestris</em> and <em>Picea abies</em> under abiotic stress</h3>
             <dl class="facts">
-              <div><dt>Where</dt><dd>Umeå University</dd></div>
-              <div><dt>Type</dt><dd>MSc thesis</dd></div>
+              <div><dt>Where</dt><dd>Umeå Plant Science Centre, Umeå University</dd></div>
+              <div><dt>Type</dt><dd>MSc thesis, 30 ECTS</dd></div>
               <div><dt>Status</dt><dd><span class="live">In submission</span></dd></div>
             </dl>
             <p>
-              Conifers like Scots pine and Norway spruce dominate boreal forests
-              because they cope so well with cold and drought, and long non-coding
-              RNAs are increasingly seen as part of that regulatory toolkit. Unlike
-              protein-coding genes, lncRNAs don't come with clean functional
-              annotation, so comparing them across tissues and conditions takes some
-              building.
+              Long non-coding RNAs are well established as regulators in herbaceous
+              plants but poorly characterised in conifers, even though Scots pine and
+              Norway spruce meet cold and drought across the boreal forest, in needles
+              and roots that do very different jobs. My thesis maps where lncRNA loci
+              sit in each tissue under each stress, in both species.
             </p>
             <p>
-              For my thesis I built a pipeline that takes the candidate lncRNAs from
-              each sample, aligns them to a reference, and asks which regions are
-              shared by every sample and which are specific to a tissue (needle or
-              root) or a stress (cold or drought). The genes those regions map to are
-              then tested for GO and KEGG enrichment. I developed it on Scots pine
-              (<em>Pinus sylvestris</em>) and am extending it to Norway spruce
-              (<em>Picea abies</em>), including zygotic and somatic embryo samples.
+              Candidate lncRNAs were called for each sample group, aligned to merged
+              reference transcriptomes, and sorted by which samples share each locus.
+              The pine design crosses stress (cold, drought) with tissue (needle,
+              root), and the spruce dataset adds somatic and zygotic embryo samples.
+              Most of these lncRNAs are novel and have no annotation of their own, so
+              I gave each locus a functional context from its nearest annotated
+              protein-coding gene within 100 kb, then tested those neighbour gene
+              sets for GO and KEGG enrichment.
             </p>
             <p class="finding">
-              GO and KEGG terms are inferred from the reference genes each region
-              maps to, so they suggest functions rather than demonstrate them.
+              Nearest-gene proximity is an inference, not a validated regulatory
+              link, and the thesis says so throughout.
             </p>
 
             <ol class="pipeline" aria-label="Pipeline stages">
-              <li><b>Align</b><span>Splice-aware minimap2 on a SLURM array, PAF converted to BED</span></li>
-              <li><b>Compare</b><span>bedtools multiinter: conserved, tissue- and stress-specific regions</span></li>
-              <li><b>Enrich</b><span>GO with topGO (BP, MF, CC), KEGG with Fisher's exact test</span></li>
-              <li><b>Plot</b><span>UpSet, bar and bubble plots and heatmaps in R</span></li>
+              <li><b>Align</b><span>minimap2 (splice preset) to merged reference transcriptomes, on SLURM</span></li>
+              <li><b>Compare</b><span>bedtools multiinter: conserved, tissue- and stress-specific loci</span></li>
+              <li><b>Filter and assign</b><span>Intersect with curated lncRNA sets, then nearest gene within 100 kb</span></li>
+              <li><b>Enrich</b><span>GO with topGO, KEGG with a hypergeometric test, on eggNOG-mapper annotations</span></li>
             </ol>
 
             <p>
-              The workflow is a Snakemake pipeline that runs on a SLURM HPC cluster,
-              with Micromamba environments and a per-species config file, so
-              switching from pine to spruce means editing the config rather than the
-              code. It is open source and versioned, and comes with a small synthetic
-              test dataset.
+              eggNOG assigns terms through mostly animal and fungal orthologs, so
+              human-disease pathways can swamp a conifer analysis. I filtered those
+              out of the KEGG background, along with animal-specific and xenobiotic
+              pathways, and removed non-plant GO terms.
             </p>
-            <p class="tools"><span>minimap2</span><span>bedtools</span><span>Snakemake</span><span>SLURM</span><span>R/Bioconductor</span><span>topGO</span><span>eggNOG-mapper</span><span>Micromamba</span></p>
+            <p>
+              The whole workflow runs in Snakemake on a SLURM HPC cluster with pinned
+              Micromamba environments, so pointing it at another species means
+              editing paths and sample names rather than code. It is open source on
+              GitHub.
+            </p>
+            <p class="tools"><span>Plant LncRNA Pipeline v2</span><span>minimap2</span><span>bedtools</span><span>topGO</span><span>eggNOG-mapper</span><span>UpSetR</span><span>ggplot2</span><span>Snakemake</span><span>SLURM</span><span>Micromamba</span></p>
             <a class="code-link" href="https://github.com/KvS-25/comparative-lncRNA-pipeline" target="_blank" rel="noopener">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
               View the pipeline on GitHub
