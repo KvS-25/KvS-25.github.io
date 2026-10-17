@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karanveer Singh — Computational Biology</title>
+<title>Karanveer Singh — Bioinformatics</title>
 <meta name="description" content="Karanveer Singh is an MSc researcher in Molecular Biology at Umeå University. lncRNA stress response in conifers, tacrolimus pharmacogenomics, computational drug discovery.">
 <meta name="theme-color" content="#16312A">
-<meta property="og:title" content="Karanveer Singh — Computational Biology">
+<meta property="og:title" content="Karanveer Singh — Bioinformatics">
 <meta property="og:description" content="lncRNA stress response in conifers, tacrolimus pharmacogenomics and computational drug discovery.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316312A'/%3E%3Crect x='6' y='14' width='8' height='4' fill='%23F4F6F1'/%3E%3Crect x='18' y='14' width='8' height='4' fill='%23E0626F'/%3E%3C/svg%3E">
@@ -146,7 +146,7 @@ a:focus-visible{
   line-height:1.04;
   letter-spacing:-0.03em;
   margin:0;
-  max-width:14ch;
+  max-width:17ch;
   text-wrap:balance;
 }
 
@@ -196,12 +196,14 @@ a:focus-visible{
   height:auto;
 }
 
-.track .rowline{stroke:#34544A; stroke-width:1;}
-.track .b-one{fill:#5C7D70; opacity:.55;}
-.track .b-all{fill:#E0626F;}
-.track .b-some{fill:#9CD0B9;}
-.track .band-all{fill:rgba(224,98,111,.13); stroke:none;}
-.track .band-some{fill:rgba(156,208,185,.10); stroke:none;}
+.track .cov-area{fill:rgba(156,208,185,.16);}
+.track .cov-line{fill:none; stroke:#9CD0B9; stroke-width:1.4; stroke-linejoin:round;}
+.track .gene rect{fill:#7FA392;}
+.track .gene .intron{stroke:#7FA392; stroke-width:1.5;}
+.track .v-lo{fill:#E0626F; stroke:#E0626F; stroke-width:1.5; opacity:.6;}
+.track .v-hi{fill:#E0626F; stroke:#E0626F; stroke-width:1.5;}
+.track line.v-lo,.track line.v-hi{fill:none;}
+.track .ruler,.track .tick{stroke:#4A6A5D; stroke-width:1;}
 
 .track-legend{
   display:flex;
@@ -216,9 +218,9 @@ a:focus-visible{
 }
 .track-legend li{display:flex; align-items:center; gap:9px;}
 .track-legend i{display:block; width:22px; height:8px; border-radius:1px;}
-.track-legend .k-lnc{background:#E0626F;}
-.track-legend .k-near{background:#9CD0B9;}
-.track-legend .k-far{background:#5C7D70; opacity:.7;}
+.track-legend .k-cov{background:#9CD0B9;}
+.track-legend .k-far{background:#7FA392;}
+.track-legend .k-dot{width:9px; height:9px; border-radius:50%; background:#E0626F;}
 
 /* One-time reveal of the track */
 @media (prefers-reduced-motion: no-preference){
@@ -535,11 +537,11 @@ footer{
     </div>
 
     <div class="hero-main" id="top">
-      <h1>I'm Karanveer, a computational biologist.</h1>
+      <h1>Bioinformatics for stress, disease and drug response</h1>
       <div class="hero-side">
       <p class="summary">
-        I'm an MSc student in Molecular Biology at Umeå University, based in Dubai,
-        working on stress, disease and drug response. My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
+        I'm Karanveer, an MSc student in Molecular Biology at Umeå University, based in
+        Dubai. My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
         in conifers</strong>, using a Snakemake pipeline on a SLURM cluster, from alignment
         through to GO and KEGG enrichment. I'm also finishing a meta-analysis of tacrolimus
         pharmacogenomics in transplant patients. I'm looking for bioinformatics, plant genomics and
@@ -562,23 +564,17 @@ footer{
       </div>
     </div>
 
-    <figure class="track" aria-label="Schematic of four samples, each a row of aligned lncRNA regions, with regions shared by every sample or by some samples highlighted">
+    <figure class="track" aria-label="Schematic genome browser view with read coverage, genes and variants">
       <svg viewBox="0 0 1000 150" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-        <g class="reveal" style="--i:0"><line class="rowline" x1="0" y1="24" x2="1000" y2="24"/><line class="rowline" x1="0" y1="58" x2="1000" y2="58"/><line class="rowline" x1="0" y1="92" x2="1000" y2="92"/><line class="rowline" x1="0" y1="126" x2="1000" y2="126"/></g>
-        <rect class="band-all reveal" style="--i:1" x="104" y="6" width="104" height="138"/>
-        <rect class="band-some reveal" style="--i:2" x="372" y="8" width="76" height="66"/>
-        <rect class="band-some reveal" style="--i:3" x="692" y="76" width="86" height="66"/>
-        <g class="reveal" style="--i:1"><rect class="b-all" x="120" y="16" width="70" height="16"/><rect class="b-all" x="126" y="50" width="64" height="16"/><rect class="b-all" x="118" y="84" width="76" height="16"/><rect class="b-all" x="124" y="118" width="68" height="16"/></g>
-        <g class="reveal" style="--i:2"><rect class="b-some" x="380" y="16" width="56" height="16"/><rect class="b-some" x="388" y="50" width="50" height="16"/></g>
-        <g class="reveal" style="--i:3"><rect class="b-some" x="548" y="50" width="52" height="16"/><rect class="b-some" x="556" y="118" width="46" height="16"/></g>
-        <g class="reveal" style="--i:3"><rect class="b-some" x="700" y="84" width="60" height="16"/><rect class="b-some" x="708" y="118" width="52" height="16"/></g>
-        <g class="reveal" style="--i:4"><rect class="b-some" x="880" y="16" width="56" height="16"/><rect class="b-some" x="886" y="84" width="50" height="16"/></g>
-        <g class="reveal" style="--i:5"><rect class="b-one" x="250" y="16" width="30" height="16"/><rect class="b-one" x="620" y="16" width="24" height="16"/><rect class="b-one" x="300" y="50" width="26" height="16"/><rect class="b-one" x="820" y="50" width="34" height="16"/><rect class="b-one" x="260" y="84" width="36" height="16"/><rect class="b-one" x="470" y="84" width="28" height="16"/><rect class="b-one" x="600" y="84" width="30" height="16"/><rect class="b-one" x="240" y="118" width="30" height="16"/><rect class="b-one" x="470" y="118" width="26" height="16"/><rect class="b-one" x="900" y="118" width="40" height="16"/><rect class="b-one" x="740" y="16" width="28" height="16"/><rect class="b-one" x="660" y="50" width="22" height="16"/></g>
-        </svg>
+        <g class="reveal" style="--i:0"><path class="cov-area" d="M0,62 L0.0,49.3 L4.0,48.3 L8.0,48.0 L12.0,48.4 L16.0,47.6 L20.0,47.5 L24.0,47.7 L28.0,47.2 L32.0,47.7 L36.0,46.9 L40.0,44.2 L44.0,44.4 L48.0,43.0 L52.0,41.5 L56.0,38.2 L60.0,35.8 L64.0,34.6 L68.0,32.9 L72.0,31.8 L76.0,28.7 L80.0,28.1 L84.0,28.6 L88.0,28.3 L92.0,26.9 L96.0,25.8 L100.0,23.9 L104.0,23.1 L108.0,20.7 L112.0,18.8 L116.0,16.4 L120.0,15.9 L124.0,16.9 L128.0,15.9 L132.0,15.0 L136.0,15.0 L140.0,14.8 L144.0,14.6 L148.0,13.6 L152.0,13.2 L156.0,12.1 L160.0,12.7 L164.0,13.9 L168.0,14.2 L172.0,15.4 L176.0,15.5 L180.0,15.7 L184.0,18.4 L188.0,19.2 L192.0,21.0 L196.0,23.0 L200.0,24.0 L204.0,27.4 L208.0,29.6 L212.0,31.7 L216.0,34.0 L220.0,33.7 L224.0,34.6 L228.0,35.5 L232.0,36.2 L236.0,36.8 L240.0,36.3 L244.0,37.4 L248.0,38.9 L252.0,38.9 L256.0,39.3 L260.0,39.3 L264.0,39.8 L268.0,41.5 L272.0,41.3 L276.0,40.9 L280.0,40.6 L284.0,40.8 L288.0,41.2 L292.0,41.6 L296.0,39.7 L300.0,41.1 L304.0,41.1 L308.0,42.7 L312.0,43.9 L316.0,43.7 L320.0,41.9 L324.0,42.4 L328.0,40.9 L332.0,40.0 L336.0,37.1 L340.0,36.0 L344.0,33.8 L348.0,33.1 L352.0,29.8 L356.0,26.9 L360.0,24.3 L364.0,24.4 L368.0,22.2 L372.0,21.0 L376.0,18.8 L380.0,17.2 L384.0,17.7 L388.0,18.3 L392.0,17.3 L396.0,16.7 L400.0,15.4 L404.0,15.4 L408.0,16.5 L412.0,16.3 L416.0,15.3 L420.0,14.6 L424.0,13.7 L428.0,12.5 L432.0,12.4 L436.0,12.1 L440.0,11.0 L444.0,10.9 L448.0,12.5 L452.0,12.5 L456.0,14.0 L460.0,14.6 L464.0,15.0 L468.0,16.9 L472.0,18.9 L476.0,20.1 L480.0,22.2 L484.0,25.5 L488.0,29.0 L492.0,31.9 L496.0,33.9 L500.0,35.4 L504.0,36.8 L508.0,39.8 L512.0,40.7 L516.0,41.8 L520.0,42.5 L524.0,43.9 L528.0,43.5 L532.0,42.9 L536.0,43.3 L540.0,43.8 L544.0,43.9 L548.0,44.5 L552.0,44.8 L556.0,45.3 L560.0,44.7 L564.0,44.2 L568.0,43.8 L572.0,44.7 L576.0,45.4 L580.0,44.7 L584.0,45.9 L588.0,45.9 L592.0,46.0 L596.0,46.2 L600.0,42.7 L604.0,40.1 L608.0,38.7 L612.0,35.8 L616.0,35.4 L620.0,31.8 L624.0,26.4 L628.0,23.7 L632.0,20.4 L636.0,17.3 L640.0,15.4 L644.0,13.0 L648.0,10.9 L652.0,11.2 L656.0,11.3 L660.0,12.7 L664.0,13.9 L668.0,14.5 L672.0,14.5 L676.0,16.8 L680.0,18.9 L684.0,21.7 L688.0,23.4 L692.0,26.1 L696.0,29.4 L700.0,33.2 L704.0,37.2 L708.0,40.7 L712.0,43.3 L716.0,45.4 L720.0,44.8 L724.0,44.0 L728.0,43.8 L732.0,41.3 L736.0,38.4 L740.0,36.2 L744.0,35.3 L748.0,35.7 L752.0,36.8 L756.0,36.5 L760.0,37.3 L764.0,37.1 L768.0,36.0 L772.0,33.5 L776.0,31.5 L780.0,29.0 L784.0,26.0 L788.0,24.8 L792.0,23.3 L796.0,21.7 L800.0,20.4 L804.0,18.3 L808.0,17.3 L812.0,17.6 L816.0,14.5 L820.0,14.2 L824.0,13.4 L828.0,12.0 L832.0,12.1 L836.0,11.6 L840.0,10.0 L844.0,10.0 L848.0,10.0 L852.0,11.0 L856.0,13.3 L860.0,12.3 L864.0,11.7 L868.0,14.5 L872.0,15.0 L876.0,13.8 L880.0,13.5 L884.0,14.2 L888.0,16.4 L892.0,19.5 L896.0,21.2 L900.0,22.3 L904.0,24.6 L908.0,26.4 L912.0,26.4 L916.0,28.2 L920.0,27.7 L924.0,27.0 L928.0,30.3 L932.0,32.6 L936.0,34.5 L940.0,37.4 L944.0,38.1 L948.0,40.7 L952.0,42.7 L956.0,43.8 L960.0,42.8 L964.0,43.4 L968.0,43.4 L972.0,44.0 L976.0,42.9 L980.0,43.3 L984.0,41.7 L988.0,43.1 L992.0,42.7 L996.0,42.3 L1000.0,42.1 L1000,62 Z"/><polyline class="cov-line" points="0.0,49.3 4.0,48.3 8.0,48.0 12.0,48.4 16.0,47.6 20.0,47.5 24.0,47.7 28.0,47.2 32.0,47.7 36.0,46.9 40.0,44.2 44.0,44.4 48.0,43.0 52.0,41.5 56.0,38.2 60.0,35.8 64.0,34.6 68.0,32.9 72.0,31.8 76.0,28.7 80.0,28.1 84.0,28.6 88.0,28.3 92.0,26.9 96.0,25.8 100.0,23.9 104.0,23.1 108.0,20.7 112.0,18.8 116.0,16.4 120.0,15.9 124.0,16.9 128.0,15.9 132.0,15.0 136.0,15.0 140.0,14.8 144.0,14.6 148.0,13.6 152.0,13.2 156.0,12.1 160.0,12.7 164.0,13.9 168.0,14.2 172.0,15.4 176.0,15.5 180.0,15.7 184.0,18.4 188.0,19.2 192.0,21.0 196.0,23.0 200.0,24.0 204.0,27.4 208.0,29.6 212.0,31.7 216.0,34.0 220.0,33.7 224.0,34.6 228.0,35.5 232.0,36.2 236.0,36.8 240.0,36.3 244.0,37.4 248.0,38.9 252.0,38.9 256.0,39.3 260.0,39.3 264.0,39.8 268.0,41.5 272.0,41.3 276.0,40.9 280.0,40.6 284.0,40.8 288.0,41.2 292.0,41.6 296.0,39.7 300.0,41.1 304.0,41.1 308.0,42.7 312.0,43.9 316.0,43.7 320.0,41.9 324.0,42.4 328.0,40.9 332.0,40.0 336.0,37.1 340.0,36.0 344.0,33.8 348.0,33.1 352.0,29.8 356.0,26.9 360.0,24.3 364.0,24.4 368.0,22.2 372.0,21.0 376.0,18.8 380.0,17.2 384.0,17.7 388.0,18.3 392.0,17.3 396.0,16.7 400.0,15.4 404.0,15.4 408.0,16.5 412.0,16.3 416.0,15.3 420.0,14.6 424.0,13.7 428.0,12.5 432.0,12.4 436.0,12.1 440.0,11.0 444.0,10.9 448.0,12.5 452.0,12.5 456.0,14.0 460.0,14.6 464.0,15.0 468.0,16.9 472.0,18.9 476.0,20.1 480.0,22.2 484.0,25.5 488.0,29.0 492.0,31.9 496.0,33.9 500.0,35.4 504.0,36.8 508.0,39.8 512.0,40.7 516.0,41.8 520.0,42.5 524.0,43.9 528.0,43.5 532.0,42.9 536.0,43.3 540.0,43.8 544.0,43.9 548.0,44.5 552.0,44.8 556.0,45.3 560.0,44.7 564.0,44.2 568.0,43.8 572.0,44.7 576.0,45.4 580.0,44.7 584.0,45.9 588.0,45.9 592.0,46.0 596.0,46.2 600.0,42.7 604.0,40.1 608.0,38.7 612.0,35.8 616.0,35.4 620.0,31.8 624.0,26.4 628.0,23.7 632.0,20.4 636.0,17.3 640.0,15.4 644.0,13.0 648.0,10.9 652.0,11.2 656.0,11.3 660.0,12.7 664.0,13.9 668.0,14.5 672.0,14.5 676.0,16.8 680.0,18.9 684.0,21.7 688.0,23.4 692.0,26.1 696.0,29.4 700.0,33.2 704.0,37.2 708.0,40.7 712.0,43.3 716.0,45.4 720.0,44.8 724.0,44.0 728.0,43.8 732.0,41.3 736.0,38.4 740.0,36.2 744.0,35.3 748.0,35.7 752.0,36.8 756.0,36.5 760.0,37.3 764.0,37.1 768.0,36.0 772.0,33.5 776.0,31.5 780.0,29.0 784.0,26.0 788.0,24.8 792.0,23.3 796.0,21.7 800.0,20.4 804.0,18.3 808.0,17.3 812.0,17.6 816.0,14.5 820.0,14.2 824.0,13.4 828.0,12.0 832.0,12.1 836.0,11.6 840.0,10.0 844.0,10.0 848.0,10.0 852.0,11.0 856.0,13.3 860.0,12.3 864.0,11.7 868.0,14.5 872.0,15.0 876.0,13.8 880.0,13.5 884.0,14.2 888.0,16.4 892.0,19.5 896.0,21.2 900.0,22.3 904.0,24.6 908.0,26.4 912.0,26.4 916.0,28.2 920.0,27.7 924.0,27.0 928.0,30.3 932.0,32.6 936.0,34.5 940.0,37.4 944.0,38.1 948.0,40.7 952.0,42.7 956.0,43.8 960.0,42.8 964.0,43.4 968.0,43.4 972.0,44.0 976.0,42.9 980.0,43.3 984.0,41.7 988.0,43.1 992.0,42.7 996.0,42.3 1000.0,42.1"/></g>
+        <g class="reveal gene" style="--i:1"><line class="intron" x1="60" y1="83" x2="230" y2="83"/><rect x="60" y="76" width="28" height="14"/><rect x="110" y="76" width="14" height="14"/><rect x="150" y="76" width="20" height="14"/><rect x="204" y="76" width="26" height="14"/><line class="intron" x1="330" y1="83" x2="520" y2="83"/><rect x="330" y="76" width="34" height="14"/><rect x="392" y="76" width="16" height="14"/><rect x="440" y="76" width="22" height="14"/><rect x="494" y="76" width="26" height="14"/><line class="intron" x1="610" y1="83" x2="700" y2="83"/><rect x="610" y="76" width="24" height="14"/><rect x="654" y="76" width="16" height="14"/><rect x="684" y="76" width="16" height="14"/><line class="intron" x1="760" y1="83" x2="940" y2="83"/><rect x="760" y="76" width="30" height="14"/><rect x="820" y="76" width="14" height="14"/><rect x="856" y="76" width="20" height="14"/><rect x="906" y="76" width="34" height="14"/></g>
+        <g class="reveal" style="--i:2"><line class="v-lo" x1="118" y1="124" x2="118" y2="106"/><circle class="v-lo" cx="118" cy="103" r="3.5"/><line class="v-lo" x1="212" y1="124" x2="212" y2="106"/><circle class="v-lo" cx="212" cy="103" r="3.5"/><line class="v-hi" x1="361" y1="124" x2="361" y2="106"/><circle class="v-hi" cx="361" cy="103" r="4.5"/><line class="v-lo" x1="447" y1="124" x2="447" y2="106"/><circle class="v-lo" cx="447" cy="103" r="3.5"/><line class="v-lo" x1="505" y1="124" x2="505" y2="106"/><circle class="v-lo" cx="505" cy="103" r="3.5"/><line class="v-lo" x1="640" y1="124" x2="640" y2="106"/><circle class="v-lo" cx="640" cy="103" r="3.5"/><line class="v-lo" x1="690" y1="124" x2="690" y2="106"/><circle class="v-lo" cx="690" cy="103" r="3.5"/><line class="v-lo" x1="784" y1="124" x2="784" y2="106"/><circle class="v-lo" cx="784" cy="103" r="3.5"/><line class="v-hi" x1="880" y1="124" x2="880" y2="106"/><circle class="v-hi" cx="880" cy="103" r="4.5"/><line class="v-lo" x1="925" y1="124" x2="925" y2="106"/><circle class="v-lo" cx="925" cy="103" r="3.5"/></g>
+        <g class="reveal" style="--i:3"><line class="ruler" x1="0" y1="140" x2="1000" y2="140"/><line class="tick" x1="0" y1="140" x2="0" y2="146"/><line class="tick" x1="100" y1="140" x2="100" y2="144"/><line class="tick" x1="200" y1="140" x2="200" y2="146"/><line class="tick" x1="300" y1="140" x2="300" y2="144"/><line class="tick" x1="400" y1="140" x2="400" y2="146"/><line class="tick" x1="500" y1="140" x2="500" y2="144"/><line class="tick" x1="600" y1="140" x2="600" y2="146"/><line class="tick" x1="700" y1="140" x2="700" y2="144"/><line class="tick" x1="800" y1="140" x2="800" y2="146"/><line class="tick" x1="900" y1="140" x2="900" y2="144"/><line class="tick" x1="1000" y1="140" x2="1000" y2="146"/></g>
+      </svg>
       <ul class="track-legend">
-        <li><i class="k-far"></i>lncRNA region in one sample</li>
-        <li><i class="k-lnc"></i>Region shared by every sample</li>
-        <li><i class="k-near"></i>Region shared by some samples, such as one tissue or one stress</li>
+        <li><i class="k-cov"></i>Read coverage</li>
+        <li><i class="k-far"></i>Genes</li>
+        <li><i class="k-dot"></i>Variants</li>
       </ul>
     </figure>
 
@@ -598,6 +594,7 @@ footer{
             <dl class="facts">
               <div><dt>Where</dt><dd>Umeå Plant Science Centre, Umeå University</dd></div>
               <div><dt>Type</dt><dd>MSc thesis, 30 ECTS</dd></div>
+              <div><dt>Supervisor</dt><dd>Nathaniel Street</dd></div>
               <div><dt>Status</dt><dd><span class="live">In submission</span></dd></div>
             </dl>
             <p>
@@ -651,8 +648,9 @@ footer{
           <article class="project" id="tacrolimus">
             <h3>Do CYP3A4, CYP3A5 and ABCB1 genotypes together predict tacrolimus exposure?</h3>
             <dl class="facts">
-              <div><dt>Where</dt><dd>Umeå University, supervised at MAHE Dubai</dd></div>
+              <div><dt>Where</dt><dd>Umeå University</dd></div>
               <div><dt>Type</dt><dd>Systematic review and meta-analysis, 30 ECTS</dd></div>
+              <div><dt>Supervisor</dt><dd>Dr. Naushad Rais, MAHE Dubai</dd></div>
               <div><dt>Status</dt><dd><span class="live">Report in preparation</span></dd></div>
             </dl>
             <p>
