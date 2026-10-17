@@ -196,14 +196,12 @@ a:focus-visible{
   height:auto;
 }
 
-.track .ruler{stroke:#4A6A5D; stroke-width:1;}
-.track .tick{stroke:#4A6A5D; stroke-width:1;}
-.track .intron{stroke-width:1.5;}
-.track .gene-far{fill:#5C7D70; stroke:#5C7D70; opacity:.55;}
-.track .gene-near{fill:#9CD0B9; stroke:#9CD0B9;}
-.track .lnc{fill:#E0626F; stroke:#E0626F;}
-.track .window{stroke:#E0626F; stroke-width:1.5; fill:none;}
-.track .link{stroke:#E0626F; stroke-width:1.5; stroke-dasharray:3 4;}
+.track .rowline{stroke:#34544A; stroke-width:1;}
+.track .b-one{fill:#5C7D70; opacity:.55;}
+.track .b-all{fill:#E0626F;}
+.track .b-some{fill:#9CD0B9;}
+.track .band-all{fill:rgba(224,98,111,.13); stroke:none;}
+.track .band-some{fill:rgba(156,208,185,.10); stroke:none;}
 
 .track-legend{
   display:flex;
@@ -221,12 +219,6 @@ a:focus-visible{
 .track-legend .k-lnc{background:#E0626F;}
 .track-legend .k-near{background:#9CD0B9;}
 .track-legend .k-far{background:#5C7D70; opacity:.7;}
-.track-legend .k-win{height:0; border-top:1.5px solid #E0626F; border-radius:0; position:relative;}
-.track-legend .k-win::before,.track-legend .k-win::after{
-  content:""; position:absolute; top:-5px; width:0; height:8px; border-left:1.5px solid #E0626F;
-}
-.track-legend .k-win::before{left:0;}
-.track-legend .k-win::after{right:0;}
 
 /* One-time reveal of the track */
 @media (prefers-reduced-motion: no-preference){
@@ -235,16 +227,7 @@ a:focus-visible{
     animation:trackIn .7s ease forwards;
     animation-delay:calc(var(--i, 0) * 160ms + 250ms);
   }
-  .track .draw{
-    stroke-dasharray:var(--len, 1000);
-    stroke-dashoffset:var(--len, 1000);
-    animation:trackDraw 1.1s ease forwards;
-    animation-delay:calc(var(--i, 0) * 160ms + 250ms);
-  }
   @keyframes trackIn{to{opacity:1;}}
-  @keyframes trackDraw{to{stroke-dashoffset:0;}}
-  .track .gene-far.reveal{animation-name:trackInFar;}
-  @keyframes trackInFar{to{opacity:.55;}}
 }
 
 /* ---------- Sections ---------- */
@@ -399,6 +382,7 @@ a:focus-visible{
   border-left-width:0;
   background:var(--panel);
 }
+.pipeline + p{margin-top:26px;}
 .pipeline li:first-child{border-left-width:1px; border-radius:var(--radius) 0 0 var(--radius);}
 .pipeline li:last-child{border-radius:0 var(--radius) var(--radius) 0;}
 .pipeline b{display:block; font-size:16px; font-weight:700; margin-bottom:2px;}
@@ -552,10 +536,10 @@ footer{
       <div class="hero-side">
       <p class="summary">
         I'm an MSc student in Molecular Biology at Umeå University, based in Dubai.
-        My thesis looks at <strong>long non-coding RNA and stress response in conifers</strong>,
-        using HPC pipelines on a SLURM cluster, from raw alignment through to GO and KEGG
-        enrichment. I'm also finishing a meta-analysis of tacrolimus pharmacogenomics in
-        transplant patients. I'm looking for bioinformatics, plant genomics and
+        My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
+        in conifers</strong>, using a Snakemake pipeline on a SLURM cluster, from alignment
+        through to GO and KEGG enrichment. I'm also finishing a meta-analysis of tacrolimus
+        pharmacogenomics in transplant patients. I'm looking for bioinformatics, plant genomics and
         computational biology roles, in academia or industry.
       </p>
       <div class="hero-links">
@@ -575,59 +559,23 @@ footer{
       </div>
     </div>
 
-    <figure class="track" aria-label="Schematic genome track: a long non-coding RNA with the nearest protein-coding gene inside a 100 kb window">
-      <svg viewBox="0 0 1000 120" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-        <!-- ruler -->
-        <line class="ruler draw" style="--len:1000;--i:0" x1="0" y1="104" x2="1000" y2="104"/>
-        <g class="tick reveal" style="--i:0">
-          <line class="tick" x1="0" y1="104" x2="0" y2="112"/><line class="tick" x1="100" y1="104" x2="100" y2="110"/>
-          <line class="tick" x1="200" y1="104" x2="200" y2="112"/><line class="tick" x1="300" y1="104" x2="300" y2="110"/>
-          <line class="tick" x1="400" y1="104" x2="400" y2="112"/><line class="tick" x1="500" y1="104" x2="500" y2="110"/>
-          <line class="tick" x1="600" y1="104" x2="600" y2="112"/><line class="tick" x1="700" y1="104" x2="700" y2="110"/>
-          <line class="tick" x1="800" y1="104" x2="800" y2="112"/><line class="tick" x1="900" y1="104" x2="900" y2="110"/>
-          <line class="tick" x1="1000" y1="104" x2="1000" y2="112"/>
-        </g>
-
-        <!-- far gene (left, outside window) -->
-        <g class="gene-far reveal" style="--i:1">
-          <line class="intron" x1="40" y1="64" x2="200" y2="64"/>
-          <rect x="40" y="55" width="34" height="18"/><rect x="104" y="55" width="16" height="18"/>
-          <rect x="150" y="55" width="22" height="18"/><rect x="186" y="55" width="14" height="18"/>
-        </g>
-
-        <!-- window bracket (100 kb) -->
-        <g class="reveal" style="--i:2">
-          <path class="window" d="M250 30 V18 H750 V30"/>
-        </g>
-
-        <!-- lncRNA -->
-        <g class="lnc reveal" style="--i:3">
-          <line class="intron" x1="430" y1="64" x2="570" y2="64"/>
-          <rect x="430" y="55" width="44" height="18"/><rect x="526" y="55" width="44" height="18"/>
-        </g>
-
-        <!-- link from lncRNA to nearest gene -->
-        <line class="link reveal" style="--i:4" x1="570" y1="64" x2="640" y2="64"/>
-
-        <!-- nearest protein-coding gene -->
-        <g class="gene-near reveal" style="--i:5">
-          <line class="intron" x1="640" y1="64" x2="730" y2="64"/>
-          <rect x="640" y="55" width="30" height="18"/><rect x="690" y="55" width="14" height="18"/>
-          <rect x="716" y="55" width="14" height="18"/>
-        </g>
-
-        <!-- far gene (right, outside window) -->
-        <g class="gene-far reveal" style="--i:1">
-          <line class="intron" x1="800" y1="64" x2="960" y2="64"/>
-          <rect x="800" y="55" width="28" height="18"/><rect x="852" y="55" width="16" height="18"/>
-          <rect x="900" y="55" width="20" height="18"/><rect x="940" y="55" width="20" height="18"/>
-        </g>
-      </svg>
+    <figure class="track" aria-label="Schematic of four samples, each a row of aligned lncRNA regions, with regions shared by every sample or by some samples highlighted">
+      <svg viewBox="0 0 1000 150" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <g class="reveal" style="--i:0"><line class="rowline" x1="0" y1="24" x2="1000" y2="24"/><line class="rowline" x1="0" y1="58" x2="1000" y2="58"/><line class="rowline" x1="0" y1="92" x2="1000" y2="92"/><line class="rowline" x1="0" y1="126" x2="1000" y2="126"/></g>
+        <rect class="band-all reveal" style="--i:1" x="104" y="6" width="104" height="138"/>
+        <rect class="band-some reveal" style="--i:2" x="372" y="8" width="76" height="66"/>
+        <rect class="band-some reveal" style="--i:3" x="692" y="76" width="86" height="66"/>
+        <g class="reveal" style="--i:1"><rect class="b-all" x="120" y="16" width="70" height="16"/><rect class="b-all" x="126" y="50" width="64" height="16"/><rect class="b-all" x="118" y="84" width="76" height="16"/><rect class="b-all" x="124" y="118" width="68" height="16"/></g>
+        <g class="reveal" style="--i:2"><rect class="b-some" x="380" y="16" width="56" height="16"/><rect class="b-some" x="388" y="50" width="50" height="16"/></g>
+        <g class="reveal" style="--i:3"><rect class="b-some" x="548" y="50" width="52" height="16"/><rect class="b-some" x="556" y="118" width="46" height="16"/></g>
+        <g class="reveal" style="--i:3"><rect class="b-some" x="700" y="84" width="60" height="16"/><rect class="b-some" x="708" y="118" width="52" height="16"/></g>
+        <g class="reveal" style="--i:4"><rect class="b-some" x="880" y="16" width="56" height="16"/><rect class="b-some" x="886" y="84" width="50" height="16"/></g>
+        <g class="reveal" style="--i:5"><rect class="b-one" x="250" y="16" width="30" height="16"/><rect class="b-one" x="620" y="16" width="24" height="16"/><rect class="b-one" x="300" y="50" width="26" height="16"/><rect class="b-one" x="820" y="50" width="34" height="16"/><rect class="b-one" x="260" y="84" width="36" height="16"/><rect class="b-one" x="470" y="84" width="28" height="16"/><rect class="b-one" x="600" y="84" width="30" height="16"/><rect class="b-one" x="240" y="118" width="30" height="16"/><rect class="b-one" x="470" y="118" width="26" height="16"/><rect class="b-one" x="900" y="118" width="40" height="16"/><rect class="b-one" x="740" y="16" width="28" height="16"/><rect class="b-one" x="660" y="50" width="22" height="16"/></g>
+        </svg>
       <ul class="track-legend">
-        <li><i class="k-lnc"></i>lncRNA</li>
-        <li><i class="k-near"></i>Nearest protein-coding gene, used as its functional proxy</li>
-        <li><i class="k-win"></i>100 kb search window</li>
-        <li><i class="k-far"></i>Genes outside the window</li>
+        <li><i class="k-far"></i>lncRNA region in one sample</li>
+        <li><i class="k-lnc"></i>Region shared by every sample</li>
+        <li><i class="k-near"></i>Region shared by some samples, such as one tissue or one stress</li>
       </ul>
     </figure>
 
@@ -643,7 +591,7 @@ footer{
         <div class="section-body">
 
           <article class="project">
-            <h3>lncRNA expression under cold and drought stress in conifers</h3>
+            <h3>Tissue-specific and stress-responsive lncRNAs in Scots pine and Norway spruce</h3>
             <dl class="facts">
               <div><dt>Where</dt><dd>Umeå University</dd></div>
               <div><dt>Type</dt><dd>MSc thesis</dd></div>
@@ -652,31 +600,40 @@ footer{
             <p>
               Conifers like Scots pine and Norway spruce dominate boreal forests
               because they cope so well with cold and drought, and long non-coding
-              RNAs are increasingly seen as part of that regulatory toolkit. The
-              trouble is that, unlike protein-coding genes, lncRNA loci don't come
-              with clean functional annotation. This project works around that by
-              giving each lncRNA a functional proxy, the nearest protein-coding gene
-              within 100 kb, and testing those neighbour gene sets for GO and KEGG
-              enrichment across needle and root tissue under cold and drought.
+              RNAs are increasingly seen as part of that regulatory toolkit. Unlike
+              protein-coding genes, lncRNAs don't come with clean functional
+              annotation, so comparing them across tissues and conditions takes some
+              building.
+            </p>
+            <p>
+              For my thesis I built a pipeline that takes the candidate lncRNAs from
+              each sample, aligns them to a reference, and asks which regions are
+              shared by every sample and which are specific to a tissue (needle or
+              root) or a stress (cold or drought). The genes those regions map to are
+              then tested for GO and KEGG enrichment. I developed it on Scots pine
+              (<em>Pinus sylvestris</em>) and am extending it to Norway spruce
+              (<em>Picea abies</em>), including zygotic and somatic embryo samples.
             </p>
             <p class="finding">
-              Nearest-neighbour proximity is a functional proxy, not evidence of
-              regulatory function. The thesis says so throughout.
+              GO and KEGG terms are inferred from the reference genes each region
+              maps to, so they suggest functions rather than demonstrate them.
             </p>
 
             <ol class="pipeline" aria-label="Pipeline stages">
-              <li><b>Align</b><span>minimap2</span></li>
-              <li><b>Intersect</b><span>bedtools, nearest gene within 100 kb</span></li>
-              <li><b>Enrich</b><span>topGO in R/Bioconductor</span></li>
-              <li><b>Lift over</b><span>Pine coordinates to the spruce genome</span></li>
+              <li><b>Align</b><span>Splice-aware minimap2 on a SLURM array, PAF converted to BED</span></li>
+              <li><b>Compare</b><span>bedtools multiinter: conserved, tissue- and stress-specific regions</span></li>
+              <li><b>Enrich</b><span>GO with topGO (BP, MF, CC), KEGG with Fisher's exact test</span></li>
+              <li><b>Plot</b><span>UpSet, bar and bubble plots and heatmaps in R</span></li>
             </ol>
 
             <p>
-              The whole pipeline runs on a SLURM HPC cluster. It produces the
-              comparative figures used in the thesis (UpSet plots, heatmaps and
-              bubble plots) to compare stress response across tissues and species.
+              The workflow is a Snakemake pipeline that runs on a SLURM HPC cluster,
+              with Micromamba environments and a per-species config file, so
+              switching from pine to spruce means editing the config rather than the
+              code. It is open source and versioned, and comes with a small synthetic
+              test dataset.
             </p>
-            <p class="tools"><span>minimap2</span><span>bedtools</span><span>R/Bioconductor</span><span>topGO</span><span>SLURM</span><span>Micromamba</span></p>
+            <p class="tools"><span>minimap2</span><span>bedtools</span><span>Snakemake</span><span>SLURM</span><span>R/Bioconductor</span><span>topGO</span><span>eggNOG-mapper</span><span>Micromamba</span></p>
             <a class="code-link" href="https://github.com/KvS-25/comparative-lncRNA-pipeline" target="_blank" rel="noopener">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
               View the pipeline on GitHub
@@ -696,30 +653,49 @@ footer{
               well-known player. What's less settled is whether adding CYP3A4 and
               the ABCB1 transporter improves on a CYP3A5-only view. This project
               pools dose-adjusted trough concentrations (C0/D) across kidney, liver,
-              heart and lung recipients to find out.
+              heart and lung recipients to test that.
             </p>
             <p>
-              I searched <strong>PubMed, Scopus and Embase</strong>, followed PRISMA 2020,
-              and screened records in Zotero. I read the full texts and extracted
-              genotype-stratified trough concentrations and doses into a structured
-              workbook, one row per genotype group and time point, and mapped earlier
-              meta-analyses and reviews to see where this work fits.
+              <strong>Search and selection.</strong> I searched PubMed, Scopus and
+              Embase under PRISMA 2020, then deduplicated and screened the records in
+              Zotero, first on title and abstract and then on full text. Studies were
+              eligible if they reported tacrolimus levels or dose by genotype in solid
+              organ transplant recipients for at least one of six variants: CYP3A5
+              rs776746, CYP3A4 rs35599367 and rs2242480, and ABCB1 rs1045642,
+              rs2032582 and rs1128503. I also went through the reference lists of
+              earlier meta-analyses to catch studies the databases missed.
             </p>
             <p>
-              Each study's genotype groups were compared within the study, then
-              combined in a multilevel random-effects model in R (metafor) with
-              cluster-robust confidence intervals. I ran subgroup analyses by organ,
-              age group and post-transplant period, plus leave-one-out and
-              sensitivity checks. Where studies reported combined genotypes, I
-              looked at those separately.
+              <strong>Extraction and quality.</strong> I read the full texts and
+              extracted genotype-stratified trough concentrations and doses, along
+              with organ, age group, ancestry and time point, into a structured sheet
+              with one row per genotype group and time point. Study quality was
+              scored with the Newcastle-Ottawa Scale, and overlapping cohorts were
+              flagged so they could be dropped in a sensitivity analysis.
             </p>
             <p>
-              I also annotated the six variants in silico, covering splicing and
-              expression effects, so the pooled results can be read against what the
-              variants are predicted to do.
+              <strong>Statistics.</strong> Within each study, genotype groups were
+              compared on log C0/D, then pooled in a multilevel random-effects model
+              in R (metafor, REML) with study as the random effect and cluster-robust
+              confidence intervals. I ran subgroups by organ, age group,
+              post-transplant period and ancestry, plus leave-one-out and sensitivity
+              analyses and exploratory small-study checks. Studies reporting combined
+              CYP3A4, CYP3A5 and ABCB1 genotypes were assessed separately from the
+              single-gene models.
+            </p>
+            <p>
+              <strong>In silico.</strong> I also annotated the six variants for
+              splicing, regulatory and expression effects, so the pooled estimates can
+              be read against what each variant is predicted to do.
+            </p>
+            <p>
+              <strong>Reproducibility.</strong> The analysis code is open source. One
+              command runs the models, the sensitivity and ancestry analyses, the
+              figures and the summary tables, and it ships with a synthetic example
+              dataset.
             </p>
 
-            <p class="tools"><span>PRISMA 2020</span><span>Zotero</span><span>R</span><span>metafor</span><span>SpliceAI</span><span>GTEx</span></p>
+            <p class="tools"><span>PRISMA 2020</span><span>Zotero</span><span>Newcastle-Ottawa Scale</span><span>R</span><span>metafor</span><span>SpliceAI</span><span>GTEx</span></p>
             <a class="code-link" href="https://github.com/KvS-25/tacrolimus-pgx-meta-analysis" target="_blank" rel="noopener">
               <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
               View the analysis code on GitHub
