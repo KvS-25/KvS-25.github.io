@@ -404,6 +404,41 @@ a:focus-visible{
   color:var(--ink);
 }
 
+/* ---------- Skills ---------- */
+
+.skills{margin:0; padding:0;}
+.skills > div{
+  display:grid;
+  grid-template-columns:210px minmax(0,1fr);
+  gap:8px 24px;
+  padding:16px 0;
+  border-top:1px solid var(--line);
+}
+.skills > div:last-child{border-bottom:1px solid var(--line);}
+.skills dt{
+  font-family:var(--display);
+  font-size:15.5px;
+  font-weight:700;
+  line-height:1.4;
+  padding-top:3px;
+}
+.skills dd{
+  margin:0;
+  display:flex;
+  flex-wrap:wrap;
+  align-content:flex-start;
+  gap:6px;
+  font-family:var(--display);
+  font-size:14.5px;
+}
+.skills dd span{
+  padding:1px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--panel);
+  line-height:1.7;
+}
+
 /* ---------- Background ---------- */
 
 .timeline{
@@ -494,6 +529,7 @@ footer{
   .hero{padding-bottom:52px;}
   .project + .project{margin-top:60px; padding-top:60px;}
   .timeline li{grid-template-columns:minmax(0,1fr); gap:2px;}
+  .skills > div{grid-template-columns:minmax(0,1fr);}
   .timeline .when{padding-top:0;}
   .pipeline{grid-template-columns:minmax(0,1fr);}
   .pipeline li{border-left-width:1px; border-top-width:0 !important; border-radius:0 !important;}
@@ -518,7 +554,8 @@ footer{
       <nav aria-label="Sections">
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#background">Background</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -527,12 +564,12 @@ footer{
       <h1>Bioinformatics for stress, disease and drug response</h1>
       <div class="hero-side">
       <p class="summary">
-        I'm Karanveer, an MSc student in Molecular Biology at Umeå University, based in
-        Dubai. My thesis looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
+        I'm Karanveer, an MSc student in Molecular Biology at Umeå University. My thesis
+        looks at <strong>tissue-specific and stress-responsive long non-coding RNAs
         in conifers</strong>, using a Snakemake pipeline on a SLURM cluster, from alignment
         through to GO and KEGG enrichment. I'm also finishing a meta-analysis of tacrolimus
-        pharmacogenomics in transplant patients. I'm looking for bioinformatics, plant genomics and
-        computational biology roles, in academia or industry.
+        pharmacogenomics in transplant patients. I'm looking for a PhD in bioinformatics, in plant genomics or
+        pharmacogenomics, and I'm open to industry roles in the same areas.
       </p>
       <div class="hero-links">
         <a class="primary" href="mailto:kvs.ms.2512@gmail.com">
@@ -579,8 +616,9 @@ footer{
           <article class="project">
             <h3>lncRNA expression patterns in <em>Pinus sylvestris</em> and <em>Picea abies</em> under abiotic stress</h3>
             <dl class="facts">
-              <div><dt>Where</dt><dd>Umeå Plant Science Centre, Umeå University</dd></div>
+              <div><dt>Institution</dt><dd>Umeå Plant Science Centre, Umeå University</dd></div>
               <div><dt>Type</dt><dd>MSc thesis, 30 ECTS</dd></div>
+              <div><dt>When</dt><dd>Jan to Jun 2026</dd></div>
               <div><dt>Supervisor</dt><dd>Nathaniel Street</dd></div>
             </dl>
             <p>
@@ -634,8 +672,9 @@ footer{
           <article class="project" id="tacrolimus">
             <h3>Do CYP3A4, CYP3A5 and ABCB1 genotypes together predict tacrolimus exposure?</h3>
             <dl class="facts">
-              <div><dt>Where</dt><dd>Umeå University</dd></div>
+              <div><dt>Institution</dt><dd>Umeå University</dd></div>
               <div><dt>Type</dt><dd>Systematic review and meta-analysis, 30 ECTS</dd></div>
+              <div><dt>When</dt><dd>May to Sep 2026</dd></div>
               <div><dt>Supervisor</dt><dd>Dr. Naushad Rais, MAHE Dubai</dd></div>
             </dl>
             <p>
@@ -715,38 +754,49 @@ footer{
     </div>
   </section>
 
-  <section class="section" id="background">
+  <section class="section" id="skills">
     <div class="wrap">
       <div class="section-grid">
-        <h2 class="section-title">Background</h2>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-body">
+          <dl class="skills">
+            <div><dt>Programming and workflows</dt><dd><span>R</span><span>Bash and Linux</span><span>Snakemake</span><span>SLURM and HPC</span><span>Micromamba</span><span>Git and GitHub</span></dd></div>
+            <div><dt>Sequence and genomics analysis</dt><dd><span>minimap2</span><span>bedtools</span><span>BLAST</span><span>PROMALS3D</span><span>eggNOG-mapper</span><span>GO and KEGG enrichment (topGO)</span></dd></div>
+            <div><dt>Statistics and evidence synthesis</dt><dd><span>Multilevel random-effects meta-analysis (metafor)</span><span>PRISMA 2020 systematic reviews</span><span>Newcastle-Ottawa Scale</span><span>Zotero</span></dd></div>
+            <div><dt>Variant annotation</dt><dd><span>SpliceAI</span><span>Human Splicing Finder</span><span>GTEx</span></dd></div>
+            <div><dt>Computational drug discovery</dt><dd><span>Molecular docking</span><span>Molecular dynamics</span></dd></div>
+            <div><dt>Visualisation</dt><dd><span>ggplot2</span><span>UpSetR</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="wrap">
+      <div class="section-grid">
+        <h2 class="section-title">Education and experience</h2>
         <div class="section-body">
           <ol class="timeline">
             <li>
-              <div class="when">2021 to 2026</div>
+              <div class="when">2021 to 2022, 2026</div>
               <div>
                 <h3>MSc, Molecular Biology, Umeå University</h3>
-                <p>Thesis on lncRNA stress response in conifers. Returned to the programme in 2026 after a period of personal leave.</p>
+                <p>MSc thesis on lncRNA in Scots pine and Norway spruce, and an advanced project on tacrolimus pharmacogenomics, 30 ECTS each.</p>
               </div>
             </li>
             <li>
               <div class="when">2017 to 2021</div>
               <div>
                 <h3>B.Tech, Biotechnology, BITS Pilani Dubai</h3>
-                <p>Undergraduate research in computational drug discovery (SARS-CoV-2 target screening) and plant antioxidant extraction from Salicornia. Also worked as an audio/video technician for the campus Event Management Committee.</p>
+                <p>Undergraduate research in computational drug discovery (SARS-CoV-2 target screening, published in 2022) and plant antioxidant extraction from Salicornia.</p>
               </div>
             </li>
             <li>
-              <div class="when">Jun to Aug 2021</div>
+              <div class="when">Jun to Jul 2019</div>
               <div>
-                <h3>Freelance live sound engineer, Headlines Bistro and Café, Dubai</h3>
-                <p>Live sound work alongside academic study.</p>
-              </div>
-            </li>
-            <li>
-              <div class="when">Jun to Aug 2019</div>
-              <div>
-                <h3>Summer engineering intern, GenoPhe Biotech, Bengaluru</h3>
-                <p>Early lab and engineering exposure during undergraduate study.</p>
+                <h3>Practice School intern, GenoPhe Biotech, Bengaluru</h3>
+                <p>Two months at a zebrafish toxicology and screening start-up. I reviewed zebrafish patents filed over 20 years to help the company assess its freedom to operate, and learned bioinformatics basics: NCBI databases, sequence formats, BLAST and PROMALS3D alignment. I used them to find zebrafish homologs of human cardiac development and heart disease genes.</p>
               </div>
             </li>
           </ol>
